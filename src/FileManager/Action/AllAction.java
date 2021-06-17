@@ -33,7 +33,7 @@ public class AllAction implements ActionListener {
     public int drow;
     private ArrayList<Integer> drowNum;
     public String name;
-    private java.util.List<String> file_name;
+    private ArrayList<String> file_name;
     private String[] CopyFileName;
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -43,7 +43,11 @@ public class AllAction implements ActionListener {
         //显示布局
         String[] columnType = {"文件名"};
         File current = fileOperate.getCurrentFile();
-        java.util.List<String> file_name = Arrays.asList(current.list());
+        file_name = new ArrayList<>();
+        String[] list = current.list();
+        for (String s : list) {
+            file_name.add(s);
+        }
         this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);

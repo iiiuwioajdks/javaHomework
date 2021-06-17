@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -23,7 +24,7 @@ public class HuiAction implements ActionListener {
     private JScrollPane scroll;
     private Table_Model model;
     private String name;
-    private java.util.List<String> file_name;
+    private ArrayList<String> file_name;
     @Override
     public void actionPerformed(ActionEvent e) {
         String[] columnType = {"文件名"};
@@ -34,7 +35,11 @@ public class HuiAction implements ActionListener {
         //显示布局
         FileOperate fileOperate = new FileOperate();
         File current2 = fileOperate.getCurrentFile2();
-        java.util.List<String> file_name = Arrays.asList(current2.list());
+        file_name = new ArrayList<>();
+        String[] list = current2.list();
+        for (String s : list) {
+            file_name.add(s);
+        }
         this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
