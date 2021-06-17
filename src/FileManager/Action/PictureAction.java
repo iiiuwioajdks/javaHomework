@@ -13,7 +13,8 @@ import java.io.File;
  * @Date 2021/6/17 16:00
  * @Version 1.0
  */
-public class PictureAction implements ActionListener {private static JFrame menuFrame;
+public class PictureAction implements ActionListener {
+    private static JFrame menuFrame;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -26,7 +27,15 @@ public class PictureAction implements ActionListener {private static JFrame menu
         int length = file_name.length;
         Object[][] real_file_name = new Object[length][1];
         for(int i = 0; i < length; i++){
-            real_file_name[i][0] = file_name[i];
+            int length_temp = file_name[i].length();
+            for(int j = 0; j < length_temp; j++){
+                String fileStyle = file_name[i].substring(file_name[i].lastIndexOf("."));
+                if(fileStyle.equals(".jpg")){
+                    real_file_name[i][0] = file_name[i];
+                }
+            }
+
+
         }
         JTable show_info = new JTable(real_file_name, columnType);
         TableColumn column = null;
@@ -38,7 +47,7 @@ public class PictureAction implements ActionListener {private static JFrame menu
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(300,200,800,500);
+        scroll.setBounds(100,50,1400,800);
         menuFrame.add(scroll);
 
 

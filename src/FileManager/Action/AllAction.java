@@ -29,6 +29,7 @@ public class AllAction implements ActionListener {
         int length = file_name.length;
         Object[][] real_file_name = new Object[length][1];
         for(int i = 0; i < length; i++){
+
             real_file_name[i][0] = file_name[i];
         }
         JTable show_info = new JTable(real_file_name, columnType);
@@ -41,7 +42,7 @@ public class AllAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(300,200,800,500);
+        scroll.setBounds(100,50,1400,800);
         menuFrame.add(scroll);
 
 
