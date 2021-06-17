@@ -43,7 +43,6 @@ public class AllAction implements ActionListener {
         for (String s : list) {
             file_name.add(s);
         }
-        this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
         for (int i = 0; i < length; i++) {
@@ -59,7 +58,7 @@ public class AllAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100, 100, 1400, 800);
+        scroll.setBounds(100, 100, 500, 800);
         menuFrame.add(scroll);
         b1 = new Button("删除", new ActionListener() {
             @Override
@@ -72,6 +71,7 @@ public class AllAction implements ActionListener {
         });
 
         menuFrame.add(b1);
+        show_info.updateUI();
         b1.setBounds(1000, 0, 99, 50);
 
         b2 = new Button("复制", new ActionListener() {
@@ -107,6 +107,7 @@ public class AllAction implements ActionListener {
                     } catch (Exception E) {
                     }
                 }
+
             }
         });
 
