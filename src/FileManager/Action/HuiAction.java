@@ -76,7 +76,7 @@ public class HuiAction implements ActionListener {
         });
 
         menuFrame.add(b);
-        b.setBounds(900,0,99,50);
+        b.setBounds(880,0,99,50);
     }
     private void removeData() throws IOException {
         show_info.addMouseListener(new MouseAdapter() {

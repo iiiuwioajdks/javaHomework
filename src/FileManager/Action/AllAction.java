@@ -111,7 +111,7 @@ public class AllAction implements ActionListener {
         });
 
         menuFrame.add(b2);
-        b2.setBounds(800, 0, 99, 50);
+        b2.setBounds(760, 0, 99, 50);
         show_info.updateUI();
     }
 
