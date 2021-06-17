@@ -1,5 +1,11 @@
 package FileManager.Action;
 
+import FileManager.Config.Button;
+import FileManager.Config.Table_Model;
+import FileManager.FileConfig.FileOperate;
+
+import javax.swing.*;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,18 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import FileManager.Config.Button;
-import FileManager.Config.Table_Model;
-import FileManager.FileConfig.*;
-
-import FileManager.FileConfig.*;
-import FileManager.Main;
-
-import javax.swing.*;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 
 /**
  * @Author lry
@@ -31,9 +25,12 @@ public class AllAction implements ActionListener {
     private JButton b1;
     private Table_Model model;
     public int drow;
+    public int drowCopy;
     public String name;
     private ArrayList<String> file_name;
     private String[] CopyFileName;
+    private JButton b2;
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -49,21 +46,20 @@ public class AllAction implements ActionListener {
         this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
-        for(int i = 0; i < length; i++){
+        for (int i = 0; i < length; i++) {
             model.addRow(this.file_name.get(i));
         }
         TableColumn column = null;
         show_info = new JTable(model);
         show_info.setBackground(Color.white);
         int column_height = show_info.getColumnCount();
-        for(int i = 0; i < column_height; i++)
-        {
+        for (int i = 0; i < column_height; i++) {
             column = show_info.getColumnModel().getColumn(i);
-            column.setPreferredWidth(100+500*i);
+            column.setPreferredWidth(100 + 500 * i);
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100,50,1400,800);
+        scroll.setBounds(100, 50, 1400, 800);
         menuFrame.add(scroll);
         b1 = new Button("删除", new ActionListener() {
             @Override
@@ -76,31 +72,72 @@ public class AllAction implements ActionListener {
         });
 
         menuFrame.add(b1);
-        b1.setBounds(1000,0,99,50);
+        b1.setBounds(1000, 0, 99, 50);
+
+        b2 = new Button("复制", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                show_info.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (show_info.getValueAt(show_info.getSelectedRow(), 0) != null) {
+                            drow = show_info.getSelectedRow();
+                        }
+                    }
+                });
+                int len = 0;
+                BufferedOutputStream bos = null;
+                BufferedInputStream bis = null;
+                String name = file_name.get(drow);
+                System.out.println(name);
+                byte[] temp = new byte[1024];
+
+                try {
+                    name = "(副本)"+name;
+                    bis = new BufferedInputStream(new FileInputStream("src\\My_File\\" + file_name.get(drow)));
+                    bos = new BufferedOutputStream(new FileOutputStream("src\\My_File\\" + name));
+                    while ((len = bis.read(temp)) != -1) {
+                        bos.write(temp, 0, len);
+                    }
+                } catch (Exception E) {
+                } finally {
+                    try {
+                        bis.close();
+                        bos.close();
+                    } catch (Exception E) {
+                    }
+                }
+            }
+        });
+
+        menuFrame.add(b2);
+        b2.setBounds(800, 0, 100, 50);
+        show_info.updateUI();
     }
 
     private void removeData() throws IOException {
         show_info.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(show_info.getValueAt(show_info.getSelectedRow(),0)!=null) {
+                if (show_info.getValueAt(show_info.getSelectedRow(), 0) != null) {
                     drow = show_info.getSelectedRow();
                 }
             }
-        });;
+        });
+        ;
 
         InputStream is = null;
         OutputStream os = null;
         try {
-            is = new FileInputStream("src\\My_File\\"+file_name.get(drow));
-            os = new FileOutputStream("src\\HuiShouFile\\"+file_name.get(drow));
+            is = new FileInputStream("src\\My_File\\" + file_name.get(drow));
+            os = new FileOutputStream("src\\HuiShouFile\\" + file_name.get(drow));
             byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
             }
-        }catch (Exception e){
-        } finally{
+        } catch (Exception e) {
+        } finally {
             if (is != null) {
                 is.close();
             }
@@ -110,17 +147,18 @@ public class AllAction implements ActionListener {
         }
         File file = null;
         try {
-            file = new File("src\\My_File\\"+file_name.get(drow));
-        }catch (Exception e){
+            file = new File("src\\My_File\\" + file_name.get(drow));
+        } catch (Exception e) {
         }
         file.delete();
 //        file_name.remove(drow);
+        System.out.println(file_name.get(drow));
         this.model.removeRow(drow);
         file_name.remove(drow);
         show_info.updateUI();
     }
 
-    public static void getJFrame(JFrame jFrame){
+    public static void getJFrame(JFrame jFrame) {
         menuFrame = jFrame;
     }
 
