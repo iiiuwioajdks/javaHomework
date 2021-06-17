@@ -63,35 +63,17 @@ public class Main{
                 b6.setBounds(0,300,100,50);
 //                Button b7 = new Button("文件压缩/解压（赫夫曼树做，可做可不做，应该能加分，有时间就搞）", new ZipAction());
 //                b7.setBounds(0,350,100,50);
+                Button b7 = new Button("总文件", new AllAction());
+                b7.setBounds(0,350,100,50);
                 menuFrame.add(b1);
                 menuFrame.add(b2);
                 menuFrame.add(b3);
                 menuFrame.add(b4);
                 menuFrame.add(b5);
                 menuFrame.add(b6);
-//                menuFrame.add(b7);
+                menuFrame.add(b7);
 
-                //显示布局
-                String[] columnType = {"文件名"};
-                String[] file_name = current.list();
-                int length = file_name.length;
-                Object[][] real_file_name = new Object[length][1];
-                for(int i = 0; i < length; i++){
-                    real_file_name[i][0] = file_name[i];
-                }
-                JTable show_info = new JTable(real_file_name, columnType);
-                TableColumn column = null;
-                int column_height = show_info.getColumnCount();
-                for(int i = 0; i < column_height; i++)
-                {
-                    column = show_info.getColumnModel().getColumn(i);
-                    column.setPreferredWidth(100+500*i);
-                }
-                show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-                JScrollPane scroll = new JScrollPane(show_info);
-                scroll.setBounds(300,200,800,500);
 
-                menuFrame.add(scroll);
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
             }
