@@ -74,12 +74,7 @@ public class AllAction implements ActionListener {
                 }
             }
         });
-//        for (Integer integer : drowNum) {
-//            file_name.remove(integer);
-//        }
-//        for (int i = 0; i < drowNum.size(); i++) {
-//            drowNum.remove(i);
-//        }
+
         menuFrame.add(b1);
         b1.setBounds(1000,0,99,50);
     }
