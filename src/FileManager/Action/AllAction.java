@@ -68,8 +68,7 @@ public class AllAction implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     removeData();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                } catch (Exception ee) {
                 }
             }
         });
@@ -104,11 +103,20 @@ public class AllAction implements ActionListener {
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
             }
-        } finally {
-            is.close();
-            os.close();
+        }catch (Exception e){
+        } finally{
+            if (is != null) {
+                is.close();
+            }
+            if (os != null) {
+                os.close();
+            }
         }
-        File file = new File("src\\My_File\\"+file_name.get(drow));
+        File file = null;
+        try {
+            file = new File("src\\My_File\\"+file_name.get(drow));
+        }catch (Exception e){
+        }
         file.delete();
 //        file_name.remove(drow);
         this.model.removeRow(drow);
