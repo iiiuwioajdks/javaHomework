@@ -46,9 +46,11 @@ public class Main{
             public void run() {
                 menuFrame = new FrameSetting("文件网盘", 300, 100, 1100, 700);
                 //添加各种按钮
+                //创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）
+                //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
                 b1 = new Button("创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）", new CreateAction());
                 b1.setBounds(0,50,100,50);
-                Button b2 = new Button("删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）", new DeleteAction());
+                Button b2 = new Button("音乐", new MusicAction());
                 b2.setBounds(0,100,100,50);
                 Button b3 = new Button("文档", new TxtAction());
                 b3.setBounds(0,150,100,50);
@@ -56,17 +58,17 @@ public class Main{
                 b4.setBounds(0,200,100,50);
                 Button b5 = new Button("图片", new PictureAction());
                 b5.setBounds(0,250,100,50);
-                Button b6 = new Button("文件回收站（显示删除了的文件，可以恢复，也可以真正删除）", new HuiAction());
+                Button b6 = new Button("回收站（显示删除了的文件，可以恢复，也可以真正删除）", new HuiAction());
                 b6.setBounds(0,300,100,50);
-                Button b7 = new Button("文件压缩/解压（赫夫曼树做，可做可不做，应该能加分，有时间就搞）", new ZipAction());
-                b7.setBounds(0,350,100,50);
+//                Button b7 = new Button("文件压缩/解压（赫夫曼树做，可做可不做，应该能加分，有时间就搞）", new ZipAction());
+//                b7.setBounds(0,350,100,50);
                 menuFrame.add(b1);
                 menuFrame.add(b2);
                 menuFrame.add(b3);
                 menuFrame.add(b4);
                 menuFrame.add(b5);
                 menuFrame.add(b6);
-                menuFrame.add(b7);
+//                menuFrame.add(b7);
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
             }
