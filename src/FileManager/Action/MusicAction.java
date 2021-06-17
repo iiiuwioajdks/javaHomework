@@ -26,16 +26,13 @@ public class MusicAction implements ActionListener {
         String[] file_name = current.list();
         int length = file_name.length;
         Object[][] real_file_name = new Object[length][1];
+        int count = 0;
         for(int i = 0; i < length; i++){
-            int length_temp = file_name[i].length();
-            for(int j = 0; j < length_temp; j++){
-                String fileStyle = file_name[i].substring(file_name[i].lastIndexOf("."));
-                if(fileStyle.equals(".mp3")){
-                    real_file_name[i][0] = file_name[i];
-                }
+            String fileStyle = file_name[i].substring(file_name[i].lastIndexOf("."));
+            if(fileStyle.equals(".mp3")){
+                real_file_name[count][0] = file_name[i];
+                count++;
             }
-
-
         }
         JTable show_info = new JTable(real_file_name, columnType);
         TableColumn column = null;
