@@ -31,14 +31,12 @@ public class AllAction implements ActionListener {
     private JButton b1;
     private Table_Model model;
     public int drow;
-    private ArrayList<Integer> drowNum;
     public String name;
     private ArrayList<String> file_name;
     private String[] CopyFileName;
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        drowNum = new ArrayList<>();
         FileOperate fileOperate = new FileOperate();
         //显示布局
         String[] columnType = {"文件名"};
@@ -76,12 +74,12 @@ public class AllAction implements ActionListener {
                 }
             }
         });
-        for (Integer integer : drowNum) {
-            file_name.remove(integer);
-        }
-        for (int i = 0; i < drowNum.size(); i++) {
-            drowNum.remove(i);
-        }
+//        for (Integer integer : drowNum) {
+//            file_name.remove(integer);
+//        }
+//        for (int i = 0; i < drowNum.size(); i++) {
+//            drowNum.remove(i);
+//        }
         menuFrame.add(b1);
         b1.setBounds(1000,0,99,50);
     }
@@ -92,7 +90,6 @@ public class AllAction implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 if(show_info.getValueAt(show_info.getSelectedRow(),0)!=null) {
                     drow = show_info.getSelectedRow();
-                    drowNum.add(drow);
                 }
             }
         });;
@@ -124,6 +121,7 @@ public class AllAction implements ActionListener {
         file.delete();
 //        file_name.remove(drow);
         this.model.removeRow(drow);
+        file_name.remove(drow);
         show_info.updateUI();
     }
 
