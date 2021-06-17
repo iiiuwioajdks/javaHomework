@@ -3,7 +3,7 @@ package FileManager.Config; /**
  * @Date 2021/6/8 20:30
  * @Version 1.0
  */
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.io.Serializable;
 
 import javax.swing.JFrame;
@@ -22,9 +22,10 @@ public class FrameSetting extends JFrame implements Serializable {
     public FrameSetting(String name, int x, int y, int w, int h) {
         super(name);
         setVisible(true);
+        setLayout(null);
         setLocation(x, y);
         setSize(w, h);
-        setLayout(new FlowLayout());
+        getContentPane().setBackground(Color.white);
     }
 }
 

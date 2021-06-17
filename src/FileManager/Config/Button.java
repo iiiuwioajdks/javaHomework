@@ -16,5 +16,16 @@ public class Button extends JButton {
         super(name);
         setPreferredSize(new Dimension(100, 30));
         addActionListener(action);
+//        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setBackground(Color.GRAY);
+//        setBorder(BorderFactory.createRaisedBevelBorder());
+        setFont(new  java.awt.Font("华文正楷",  2,  13));
+
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

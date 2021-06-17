@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 /**
  * @Author lmx
- * @Date 2021/6/17 13:14
+ * @Date 2021/6/17 15:00
  * @Version 1.0
  */
-public class CopyAction implements ActionListener {
+public class VideoAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
