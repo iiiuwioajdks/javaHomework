@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
  *
  */
 class Action implements ActionListener {
+
     private String name;          //名字
     private String labelName1;    //第一个标签的名字
     private String labelName2;    //第二个标签的名字

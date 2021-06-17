@@ -2,6 +2,7 @@ package FileManager;
 
 
 import FileManager.Action.*;
+import FileManager.FileConfig.*;
 import FileManager.Action.ZipAction;
 //import FileManager.Config.BgPanel;
 //import FileManager.Config.BgPanel;
@@ -20,32 +21,22 @@ import java.io.IOException;
  * @Version 1.0
  */
 public class Main{
-    static private JFrame menuFrame;    //主面板
-    private static File current;        //当前路径
+    static public JFrame menuFrame;    //主面板
+          //当前路径
     private static JPanel jPanel;
     private static Button b1;
     //得到当前路径
-    public static File getCurrentFile() {
-        return current;
-    }
-    //改变当前路径
-    public static boolean setCurrentFile(String s) {
-        File tempFile = current;
-        current = new File(s);
-        if(current.exists()) return true;
-        else {
-            current = tempFile;
-            return false;
-        }
-    }
+
     public static void main(String[] args) throws IOException {
-        current = new File("src\\My_File");
+
 
         //使用事件调度线程进行管理
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 menuFrame = new FrameSetting("文件网盘", 300, 100, 1100, 700);
+                AllAction.getJFrame(menuFrame);
+                PictureAction.getJFrame(menuFrame);
                 //添加各种按钮
                 //创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）
                 //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
@@ -73,7 +64,27 @@ public class Main{
                 menuFrame.add(b6);
                 menuFrame.add(b7);
 
-
+                //显示布局
+//                String[] columnType = {"文件名"};
+//                String[] file_name = current.list();
+//                int length = file_name.length;
+//                Object[][] real_file_name = new Object[length][1];
+//                for(int i = 0; i < length; i++){
+//                    real_file_name[i][0] = file_name[i];
+//                }
+//                JTable show_info = new JTable(real_file_name, columnType);
+//                TableColumn column = null;
+//                int column_height = show_info.getColumnCount();
+//                for(int i = 0; i < column_height; i++)
+//                {
+//                    column = show_info.getColumnModel().getColumn(i);
+//                    column.setPreferredWidth(100+500*i);
+//                }
+//                show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//                JScrollPane scroll = new JScrollPane(show_info);
+//                scroll.setBounds(300,200,800,500);
+//
+//                menuFrame.add(scroll);
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
             }
