@@ -24,7 +24,7 @@ public class HuiAction implements ActionListener {
     private JTable show_info;
     private JButton b1;
     public int drow;
-    private JScrollPane scroll;
+
     private Table_Model model;
     private String name;
     private ArrayList<String> file_name;
@@ -34,7 +34,7 @@ public class HuiAction implements ActionListener {
         String[] columnType = {"文件名"};
         model = new Table_Model(20);
         show_info = new JTable(model);
-        scroll = new JScrollPane(show_info);
+
 
         //显示布局
         FileOperate fileOperate = new FileOperate();
@@ -62,9 +62,9 @@ public class HuiAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100,100,1400,800);
+        scroll.setBounds(600,100,500,800);
         menuFrame.add(scroll);
-
+        show_info.updateUI();
         b = new FileManager.Config.Button("彻底删除", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,6 +73,8 @@ public class HuiAction implements ActionListener {
                 } catch (Exception ee) {
                     System.out.println(ee.getMessage());
                 }
+
+
             }
         });
 
