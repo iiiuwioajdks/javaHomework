@@ -43,15 +43,15 @@ public class Main {
             public void run() {
                 menuFrame = new FrameSetting("文件网盘", 300, 100, 1100, 700);
                 menuFrame.setLayout(null);
-                //背景
-                JPanel imgPanel = new JPanel(){
-                    protected void paintComponent(Graphics g) {
-                        ImageIcon icon = new ImageIcon(getClass().getResource("/Picture/background.jpg"));
-                        Image image = icon.getImage();
-                        g.drawImage(image,0,0,icon.getIconWidth(),icon.getIconHeight(),icon.getImageObserver());
-                        menuFrame.setSize(icon.getIconWidth(),icon.getIconHeight());
-                    }
-                };
+//                //背景
+//                JPanel imgPanel = new JPanel(){
+//                    protected void paintComponent(Graphics g) {
+//                        ImageIcon icon = new ImageIcon(getClass().getResource("/Picture/background.jpg"));
+//                        Image image = icon.getImage();
+//                        g.drawImage(image,0,0,icon.getIconWidth(),icon.getIconHeight(),icon.getImageObserver());
+//                        menuFrame.setSize(icon.getIconWidth(),icon.getIconHeight());
+//                    }
+//                };
                 //添加各种按钮
                 Button b1 = new Button("创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）", new CreateAction());
                 b1.setBounds(0,50,100,50);
@@ -68,15 +68,15 @@ public class Main {
                 Button b7 = new Button("文件压缩/解压（赫夫曼树做，可做可不做，应该能加分，有时间就搞）", new ZipAction());
                 b7.setBounds(0,350,100,50);
                 Button b8 = new Button("设置目录", new ChangeAction());
-//                menuFrame.add(b1);
-//                menuFrame.add(b2);
-//                menuFrame.add(b3);
-//                menuFrame.add(b4);
-//                menuFrame.add(b5);
-//                menuFrame.add(b6);
-//                menuFrame.add(b7);
-                menuFrame.add(imgPanel);
-                menuFrame.pack();
+                menuFrame.add(b1);
+                menuFrame.add(b2);
+                menuFrame.add(b3);
+                menuFrame.add(b4);
+                menuFrame.add(b5);
+                menuFrame.add(b6);
+                menuFrame.add(b7);
+//                menuFrame.add(imgPanel);
+//                menuFrame.pack();
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
             }
