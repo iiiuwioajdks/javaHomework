@@ -29,6 +29,8 @@ public class AllAction implements ActionListener {
     private JButton b1;
     private Table_Model model;
     public int drow;
+    public String name;
+    private String[] file_name;
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -36,16 +38,12 @@ public class AllAction implements ActionListener {
         //显示布局
         String[] columnType = {"文件名"};
         File current = fileOperate.getCurrentFile();
-        String[] file_name = current.list();
+        file_name = current.list();
         int length = file_name.length;
-        Object[][] real_file_name = new Object[length][1];
         model = new Table_Model(20);
         for(int i = 0; i < length; i++){
-            real_file_name[i][0] = file_name[i];
-            //
             model.addRow(file_name[i]);
         }
-//        show_info = new JTable(real_file_name, columnType);
         TableColumn column = null;
         show_info = new JTable(model);
         show_info.setBackground(Color.white);
@@ -65,8 +63,8 @@ public class AllAction implements ActionListener {
                 removeData();
             }
         });
-        b1.setBounds(1000,0,99,50);
         menuFrame.add(b1);
+        b1.setBounds(1000,0,99,50);
     }
 
     private void removeData() {
@@ -78,7 +76,10 @@ public class AllAction implements ActionListener {
                 }
             }
         });
-        model.removeRow(drow);
+        HuiAction huiAction = new HuiAction();
+        huiAction.getName(name);
+        System.out.println(name);
+        this.model.removeRow(drow);
         show_info.updateUI();
     }
 
