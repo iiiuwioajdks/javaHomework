@@ -54,7 +54,7 @@ public class Main{
                 b6.setBounds(0,450,100,50);
 
                 Button b7 = new Button("");
-                b7.setBounds(0,0,600,100);
+                b7.setBounds(0,0,100,100);
 
                 Button b8 = new Button("创建文件",new CreateAction());
                 b8.setBounds(0,520,100,50);
@@ -63,7 +63,7 @@ public class Main{
                 b7.setBorderPainted(false);
                 ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
                 b7.setIcon(icon);
-                b7.setMargin(new Insets(0,0,0,500));
+                b7.setMargin(new Insets(0,0,0,5));
 
                 b6.doClick();
                 b1.doClick();
