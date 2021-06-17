@@ -59,7 +59,7 @@ public class AllAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100, 50, 1400, 800);
+        scroll.setBounds(100, 100, 1400, 800);
         menuFrame.add(scroll);
         b1 = new Button("删除", new ActionListener() {
             @Override
@@ -111,7 +111,7 @@ public class AllAction implements ActionListener {
         });
 
         menuFrame.add(b2);
-        b2.setBounds(800, 0, 100, 50);
+        b2.setBounds(800, 0, 99, 50);
         show_info.updateUI();
     }
 

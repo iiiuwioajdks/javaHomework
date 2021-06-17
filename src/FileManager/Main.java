@@ -28,7 +28,6 @@ public class Main{
 
     public static void main(String[] args) throws IOException {
 
-
         //使用事件调度线程进行管理
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -41,32 +40,44 @@ public class Main{
                 //添加各种按钮
                 //创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）
                 //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
-                Button b1 = new Button("创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）", new CreateAction());
-                b1.setBounds(0,50,100,50);
+                Button b1 = new Button("总文件", new AllAction());
+                b1.setBounds(0,100,100,50);
                 Button b2 = new Button("音乐", new MusicAction());
-                b2.setBounds(0,100,100,50);
+                b2.setBounds(0,170,100,50);
                 Button b3 = new Button("文档", new TxtAction());
-                b3.setBounds(0,150,100,50);
+                b3.setBounds(0,240,100,50);
                 Button b4 = new Button("视频", new VideoAction());
-                b4.setBounds(0,200,100,50);
+                b4.setBounds(0,310,100,50);
                 Button b5 = new Button("图片", new PictureAction());
-                b5.setBounds(0,250,100,50);
-                Button b6 = new Button("回收站（显示删除了的文件，可以恢复，也可以真正删除）", new HuiAction());
-                b6.setBounds(0,300,100,50);
+                b5.setBounds(0,380,100,50);
+                Button b6 = new Button("回收站", new HuiAction());
+                b6.setBounds(0,450,100,50);
 
-                Button b7 = new Button("总文件", new AllAction());
-                b7.setBounds(0,350,100,50);
+                Button b7 = new Button("");
+                b7.setBounds(0,0,600,100);
+
+                Button b8 = new Button("创建文件",new CreateAction());
+                b8.setBounds(0,520,100,50);
+
+                b7.setContentAreaFilled(false);
+                b7.setBorderPainted(false);
+                ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
+                b7.setIcon(icon);
+                b7.setMargin(new Insets(0,0,0,500));
+
+                b6.doClick();
+                b1.doClick();
 
 //                Button b8 = new Button("删除",new DeleteAction());
 //                b8.setBounds(1000,0,99,50);
-                menuFrame.add(b7);
+                menuFrame.add(b1);
                 menuFrame.add(b2);
                 menuFrame.add(b3);
                 menuFrame.add(b4);
                 menuFrame.add(b5);
                 menuFrame.add(b6);
-                menuFrame.add(b1);
-//                menuFrame.add(b8);
+                menuFrame.add(b7);
+                menuFrame.add(b8);
                 //显示布局
 //                String[] columnType = {"文件名"};
 //                String[] file_name = current.list();

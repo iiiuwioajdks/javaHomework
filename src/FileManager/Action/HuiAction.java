@@ -61,7 +61,7 @@ public class HuiAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100,50,1400,800);
+        scroll.setBounds(100,100,1400,800);
         menuFrame.add(scroll);
 
         b = new FileManager.Config.Button("彻底删除", new ActionListener() {

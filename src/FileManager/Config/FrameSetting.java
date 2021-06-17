@@ -6,7 +6,7 @@ package FileManager.Config; /**
 import java.awt.*;
 import java.io.Serializable;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * 这个作用是设置窗口的大小和位置
@@ -20,13 +20,13 @@ public class FrameSetting extends JFrame implements Serializable {
     // 设置顶层窗口的名字，位置和大小
     // 参数设置使其正好显示在最中间
     public FrameSetting(String name, int x, int y, int w, int h) {
-        super(name);
         setVisible(true);
         setLayout(null);
         setLocation(x, y);
         setSize(w, h);
         getContentPane().setBackground(Color.white);
     }
+
 }
 
 
