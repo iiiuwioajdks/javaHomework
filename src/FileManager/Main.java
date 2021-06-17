@@ -37,6 +37,8 @@ public class Main{
                 PictureAction.getJFrame(menuFrame);
                 MusicAction.getJFrame(menuFrame);
                 HuiAction.getJFrame(menuFrame);
+                TxtAction.getJFrame(menuFrame);
+                VideoAction.getJFrame(menuFrame);
                 //添加各种按钮
                 //创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）
                 //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
