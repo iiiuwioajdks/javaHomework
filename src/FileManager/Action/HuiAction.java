@@ -29,6 +29,8 @@ public class HuiAction implements ActionListener {
     private String name;
     private ArrayList<String> file_name;
     private JButton b;
+    private JButton bb;
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String[] columnType = {"文件名"};
@@ -61,7 +63,7 @@ public class HuiAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100,100,1400,800);
+        scroll.setBounds(100,99,1400,800);
         menuFrame.add(scroll);
 
         b = new FileManager.Config.Button("彻底删除", new ActionListener() {
@@ -77,6 +79,23 @@ public class HuiAction implements ActionListener {
 
         menuFrame.add(b);
         b.setBounds(880,0,99,50);
+
+        bb = new FileManager.Config.Button("恢复文件", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    rollback();
+                }catch (Exception ee){
+                    System.out.println(ee.getMessage());
+                }
+            }
+
+        });
+        menuFrame.add(bb);
+        bb.setBounds(640,0,100,50);
+    }
+    private void rollback() {
+        System.out.println(41);
     }
     private void removeData() throws IOException {
         show_info.addMouseListener(new MouseAdapter() {

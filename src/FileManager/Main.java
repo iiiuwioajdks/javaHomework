@@ -12,6 +12,8 @@ import FileManager.Config.FrameSetting;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -42,35 +44,56 @@ public class Main{
                 //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
                 Button b1 = new Button("总文件", new AllAction());
                 b1.setBounds(0,100,100,50);
+                b1.setFocusPainted(false);
                 Button b2 = new Button("音乐", new MusicAction());
                 b2.setBounds(0,170,100,50);
+                b2.setFocusPainted(false);
                 Button b3 = new Button("文档", new TxtAction());
                 b3.setBounds(0,240,100,50);
+                b3.setFocusPainted(false);
                 Button b4 = new Button("视频", new VideoAction());
                 b4.setBounds(0,310,100,50);
+                b4.setFocusPainted(false);
                 Button b5 = new Button("图片", new PictureAction());
                 b5.setBounds(0,380,100,50);
+                b5.setFocusPainted(false);
                 Button b6 = new Button("回收站", new HuiAction());
                 b6.setBounds(0,450,100,50);
+                b6.setFocusPainted(false);
 
                 Button b7 = new Button("");
                 b7.setBounds(0,0,100,100);
 
                 Button b8 = new Button("创建文件",new CreateAction());
                 b8.setBounds(0,520,100,50);
+                b8.setFocusPainted(false);
 
                 b7.setContentAreaFilled(false);
                 b7.setBorderPainted(false);
                 ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
                 b7.setIcon(icon);
                 b7.setMargin(new Insets(0,0,0,5));
+                // 去除虚线框
+                b7.setFocusPainted(false);
 
-                b6.doClick();
                 b1.doClick();
+                b6.doClick();
 
 //                Button b8 = new Button("删除",new DeleteAction());
 //                b8.setBounds(1000,0,99,50);
                 menuFrame.add(b1);
+                b1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                        b1.setBackground(Color.gray);
+                    }
+                });
+                b1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseExited(MouseEvent e) {  //鼠标离开
+                        b1.setBackground(Color.lightGray);
+                    }
+                });
                 menuFrame.add(b2);
                 menuFrame.add(b3);
                 menuFrame.add(b4);
@@ -104,4 +127,6 @@ public class Main{
             }
         });
     }
+
+
 }
