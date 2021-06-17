@@ -10,7 +10,11 @@ import FileManager.Main;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
-
+/**
+ * @Author lry
+ * @Date 2021/6/17 16:00
+ * @Version 1.0
+ */
 public class AllAction implements ActionListener {
     private static JFrame menuFrame;
 

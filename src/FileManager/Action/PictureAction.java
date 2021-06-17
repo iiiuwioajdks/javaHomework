@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- * @Author lmx
- * @Date 2021/6/17 13:14
+ * @Author lry
+ * @Date 2021/6/17 16:00
  * @Version 1.0
  */
 public class PictureAction implements ActionListener {private static JFrame menuFrame;
