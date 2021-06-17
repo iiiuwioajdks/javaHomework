@@ -67,8 +67,9 @@ public class Main{
                 b7.setIcon(icon);
                 b7.setMargin(new Insets(0,0,0,5));
 
-                b6.doClick();
                 b1.doClick();
+                b6.doClick();
+
 
 //                Button b8 = new Button("删除",new DeleteAction());
 //                b8.setBounds(1000,0,99,50);

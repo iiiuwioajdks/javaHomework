@@ -47,6 +47,7 @@ public class HuiAction implements ActionListener {
         this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
+        model.setTitle_name("回收站");
         for(int i = 0; i < length; i++){
             model.addRow(this.file_name.get(i));
         }
