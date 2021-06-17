@@ -49,8 +49,6 @@ public class PictureAction implements ActionListener {
         JScrollPane scroll = new JScrollPane(show_info);
         scroll.setBounds(100,50,1400,800);
         menuFrame.add(scroll);
-
-
     }
 
     public static void getJFrame(JFrame jFrame){

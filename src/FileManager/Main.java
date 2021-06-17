@@ -24,7 +24,6 @@ public class Main{
     static public JFrame menuFrame;    //主面板
           //当前路径
     private static JPanel jPanel;
-    private static Button b1;
     //得到当前路径
 
     public static void main(String[] args) throws IOException {
@@ -41,7 +40,7 @@ public class Main{
                 //添加各种按钮
                 //创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）
                 //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
-                b1 = new Button("创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）", new CreateAction());
+                Button b1 = new Button("创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）", new CreateAction());
                 b1.setBounds(0,50,100,50);
                 Button b2 = new Button("音乐", new MusicAction());
                 b2.setBounds(0,100,100,50);
@@ -53,18 +52,20 @@ public class Main{
                 b5.setBounds(0,250,100,50);
                 Button b6 = new Button("回收站（显示删除了的文件，可以恢复，也可以真正删除）", new HuiAction());
                 b6.setBounds(0,300,100,50);
-//                Button b7 = new Button("文件压缩/解压（赫夫曼树做，可做可不做，应该能加分，有时间就搞）", new ZipAction());
-//                b7.setBounds(0,350,100,50);
+
                 Button b7 = new Button("总文件", new AllAction());
                 b7.setBounds(0,350,100,50);
-                menuFrame.add(b1);
+
+//                Button b8 = new Button("删除",new DeleteAction());
+//                b8.setBounds(1000,0,99,50);
+                menuFrame.add(b7);
                 menuFrame.add(b2);
                 menuFrame.add(b3);
                 menuFrame.add(b4);
                 menuFrame.add(b5);
                 menuFrame.add(b6);
-                menuFrame.add(b7);
-
+                menuFrame.add(b1);
+//                menuFrame.add(b8);
                 //显示布局
 //                String[] columnType = {"文件名"};
 //                String[] file_name = current.list();
