@@ -5,6 +5,8 @@ import FileManager.Main;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * @Author lmx
@@ -25,8 +27,14 @@ public class ChangeAction extends FileManager.Action.Action {
             // 点完确认按钮之后转到后台这个控制器
             public void actionPerformed(ActionEvent e) {
                 String s1 = jText1.getText();
-                if (Main.setCurrentFile(s1))
+                if (Main.setCurrentFile(s1)){
                     JOptionPane.showMessageDialog(frame, m1);
+
+                    //基础文件显示界面
+
+                    JTable basic_info = new JTable();
+                }
+
                 else
                     JOptionPane.showMessageDialog(frame, m2);
             }
