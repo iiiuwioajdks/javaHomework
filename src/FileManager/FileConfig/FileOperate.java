@@ -15,8 +15,12 @@ public class FileOperate {
     protected File from, to;
 
     private static File current = new File("src\\My_File");
+    private static File current2 = new File("src\\HuiShouFile");
     public File getCurrentFile() {
         return current;
+    }
+    public File getCurrentFile2() {
+        return current2;
     }
     //改变当前路径
     public static boolean setCurrentFile(String s) {

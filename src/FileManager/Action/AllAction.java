@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import FileManager.Config.Button;
 import FileManager.Config.Table_Model;
@@ -29,20 +31,24 @@ public class AllAction implements ActionListener {
     private JButton b1;
     private Table_Model model;
     public int drow;
+    private ArrayList<Integer> drowNum;
     public String name;
-    private String[] file_name;
+    private java.util.List<String> file_name;
+    private String[] CopyFileName;
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        drowNum = new ArrayList<>();
         FileOperate fileOperate = new FileOperate();
         //显示布局
         String[] columnType = {"文件名"};
         File current = fileOperate.getCurrentFile();
-        file_name = current.list();
-        int length = file_name.length;
-        model = new Table_Model(20);
+        java.util.List<String> file_name = Arrays.asList(current.list());
+        this.file_name = file_name;
+        int length = this.file_name.size();
+        model = new Table_Model(50);
         for(int i = 0; i < length; i++){
-            model.addRow(file_name[i]);
+            model.addRow(this.file_name.get(i));
         }
         TableColumn column = null;
         show_info = new JTable(model);
@@ -60,25 +66,51 @@ public class AllAction implements ActionListener {
         b1 = new Button("删除", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                removeData();
+                try {
+                    removeData();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         });
+        for (Integer integer : drowNum) {
+            file_name.remove(integer);
+        }
+        for (int i = 0; i < drowNum.size(); i++) {
+            drowNum.remove(i);
+        }
         menuFrame.add(b1);
         b1.setBounds(1000,0,99,50);
     }
 
-    private void removeData() {
+    private void removeData() throws IOException {
         show_info.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(show_info.getValueAt(show_info.getSelectedRow(),0)!=null) {
                     drow = show_info.getSelectedRow();
+                    drowNum.add(drow);
                 }
             }
-        });
-        HuiAction huiAction = new HuiAction();
-        huiAction.getName(name);
-        System.out.println(name);
+        });;
+
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream("src\\My_File\\"+file_name.get(drow));
+            os = new FileOutputStream("src\\HuiShouFile\\"+file_name.get(drow));
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+        File file = new File("src\\My_File\\"+file_name.get(drow));
+        file.delete();
+//        file_name.remove(drow);
         this.model.removeRow(drow);
         show_info.updateUI();
     }

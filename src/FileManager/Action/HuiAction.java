@@ -1,10 +1,15 @@
 package FileManager.Action;
 
 import FileManager.Config.Table_Model;
+import FileManager.FileConfig.FileOperate;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Arrays;
 
 /**
  * @Author lmx
@@ -18,12 +23,35 @@ public class HuiAction implements ActionListener {
     private JScrollPane scroll;
     private Table_Model model;
     private String name;
+    private java.util.List<String> file_name;
     @Override
     public void actionPerformed(ActionEvent e) {
         String[] columnType = {"文件名"};
         model = new Table_Model(20);
         show_info = new JTable(model);
         scroll = new JScrollPane(show_info);
+
+        //显示布局
+        FileOperate fileOperate = new FileOperate();
+        File current2 = fileOperate.getCurrentFile2();
+        java.util.List<String> file_name = Arrays.asList(current2.list());
+        this.file_name = file_name;
+        int length = this.file_name.size();
+        model = new Table_Model(50);
+        for(int i = 0; i < length; i++){
+            model.addRow(this.file_name.get(i));
+        }
+        TableColumn column = null;
+        show_info = new JTable(model);
+        show_info.setBackground(Color.white);
+        int column_height = show_info.getColumnCount();
+        for(int i = 0; i < column_height; i++)
+        {
+            column = show_info.getColumnModel().getColumn(i);
+            column.setPreferredWidth(100+500*i);
+        }
+        show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JScrollPane scroll = new JScrollPane(show_info);
         scroll.setBounds(100,50,1400,800);
         menuFrame.add(scroll);
     }
