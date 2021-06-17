@@ -49,6 +49,7 @@ public class HuiAction implements ActionListener {
         this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
+        model.setTitle_name("回收站");
         for(int i = 0; i < length; i++){
             model.addRow(this.file_name.get(i));
         }
@@ -63,7 +64,7 @@ public class HuiAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100,99,1400,800);
+        scroll.setBounds(600,99,1400,800);
         menuFrame.add(scroll);
 
         b = new FileManager.Config.Button("彻底删除", new ActionListener() {
