@@ -75,20 +75,28 @@ public class Main{
                 b8.setFocusPainted(false);
 
                 Button b9 = new Button("搜索",new SearchAction());
-                b9.setBounds(1000,55,100,40);
+                b9.setBounds(1020,55,80,40);
 
+                Button b10 = new Button("");
+                b10.setBounds(0,0,680,100);
 
                 b7.setContentAreaFilled(false);
                 b7.setBorderPainted(false);
+                b10.setContentAreaFilled(false);
+                b10.setBorderPainted(false);
                 ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
+                ImageIcon icon2 = new ImageIcon(getClass().getResource("topm.jpg"));
                 b7.setIcon(icon);
+                b10.setIcon(icon2);
                 b7.setMargin(new Insets(0,0,0,5));
+                b10.setMargin(new Insets(0,70,0,0));
                 // 去除虚线框
                 b7.setFocusPainted(false);
+                b10.setFocusPainted(false);
 
                 JTextField textField = new JTextField(8);
                 textField.setFont(new Font(null, Font.PLAIN, 20));
-                textField.setBounds(640,60,350,30);
+                textField.setBounds(720,60,290,30);
                 menuFrame.add(textField);
 
                 SearchAction.getText(textField);
@@ -116,6 +124,7 @@ public class Main{
                 setMouseColor(b8);
                 menuFrame.add(b9);
                 setMouseColor(b9);
+                menuFrame.add(b10);
 
                 menuFrame.setVisible(true);
             }

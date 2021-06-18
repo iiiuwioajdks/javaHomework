@@ -72,7 +72,7 @@ public class AllAction implements ActionListener {
 
         menuFrame.add(b1);
         show_info.updateUI();
-        b1.setBounds(1000, 0, 99, 50);
+        b1.setBounds(1020, 0, 80, 50);
 
         setMouseColor(b1);
         b2 = new Button("复制", new ActionListener() {
@@ -116,7 +116,7 @@ public class AllAction implements ActionListener {
         menuFrame.add(b2);
         b1.setFocusPainted(false);
         b2.setFocusPainted(false);
-        b2.setBounds(760, 0, 99, 50);
+        b2.setBounds(820, 0, 80, 50);
         show_info.updateUI();
     }
 
