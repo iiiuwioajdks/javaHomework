@@ -73,9 +73,6 @@ public class Main{
                 b8.setBounds(0,520,100,50);
                 b8.setFocusPainted(false);
 
-                Button b9 = new Button("搜索",new SearchAction());
-                b9.setBounds(1000,55,100,40);
-
                 b7.setContentAreaFilled(false);
                 b7.setBorderPainted(false);
                 ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
@@ -84,74 +81,43 @@ public class Main{
                 // 去除虚线框
                 b7.setFocusPainted(false);
 
+                JTextField textField = new JTextField(8);
+                textField.setFont(new Font(null, Font.PLAIN, 20));
+                textField.setBounds(640,60,350,30);
+                menuFrame.add(textField);
+
                 b1.doClick();
                 b6.doClick();
 
-                final JTextField textField = new JTextField(8);
-                textField.setFont(new Font(null, Font.PLAIN, 20));
 
-//                Button b8 = new Button("删除",new DeleteAction());
-//                b8.setBounds(1000,0,99,50);
+
                 menuFrame.add(b1);
-                setMouseColor(b1);
+                b1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                        b1.setBackground(Color.gray);
+                    }
+                });
+                b1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseExited(MouseEvent e) {  //鼠标离开
+                        b1.setBackground(Color.lightGray);
+                    }
+                });
                 menuFrame.add(b2);
-                setMouseColor(b2);
                 menuFrame.add(b3);
-                setMouseColor(b3);
                 menuFrame.add(b4);
-                setMouseColor(b4);
                 menuFrame.add(b5);
-                setMouseColor(b5);
                 menuFrame.add(b6);
-                setMouseColor(b6);
                 menuFrame.add(b7);
-                setMouseColor(b7);
                 menuFrame.add(b8);
-                setMouseColor(b8);
-                menuFrame.add(b9);
-                setMouseColor(b9);
-                menuFrame.add(textField);
-                //显示布局
-//                String[] columnType = {"文件名"};
-//                String[] file_name = current.list();
-//                int length = file_name.length;
-//                Object[][] real_file_name = new Object[length][1];
-//                for(int i = 0; i < length; i++){
-//                    real_file_name[i][0] = file_name[i];
-//                }
-//                JTable show_info = new JTable(real_file_name, columnType);
-//                TableColumn column = null;
-//                int column_height = show_info.getColumnCount();
-//                for(int i = 0; i < column_height; i++)
-//                {
-//                    column = show_info.getColumnModel().getColumn(i);
-//                    column.setPreferredWidth(100+500*i);
-//                }
-//                show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-//                JScrollPane scroll = new JScrollPane(show_info);
-//                scroll.setBounds(300,200,800,500);
-//
-//                menuFrame.add(scroll);
+
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
             }
         });
     }
 
-    public static void setMouseColor(JButton b) {
-        b.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {  //鼠标移上去
-                b.setBackground(Color.gray);
-            }
-        });
-        b.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseExited(MouseEvent e) {  //鼠标离开
-                b.setBackground(Color.lightGray);
-            }
-        });
-    }
 
     public static void createUI(){
         if (SystemTray.isSupported()) {
