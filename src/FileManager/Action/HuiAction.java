@@ -80,6 +80,7 @@ public class HuiAction implements ActionListener {
 
         menuFrame.add(b);
         b.setBounds(880,0,99,50);
+        setMouseColor(b);
 
         bb = new FileManager.Config.Button("恢复文件", new ActionListener() {
             @Override
@@ -92,6 +93,7 @@ public class HuiAction implements ActionListener {
             }
 
         });
+        setMouseColor(bb);
         menuFrame.add(bb);
         bb.setBounds(640,0,100,50);
     }
@@ -173,4 +175,20 @@ public class HuiAction implements ActionListener {
         this.name = name;
         System.out.println(name);
     }
+
+    public static void setMouseColor(JButton b) {
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                b.setBackground(Color.gray);
+            }
+        });
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {  //鼠标离开
+                b.setBackground(Color.lightGray);
+            }
+        });
+    }
+
 }
