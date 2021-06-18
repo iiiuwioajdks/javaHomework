@@ -18,7 +18,7 @@ public class Button extends JButton {
         addActionListener(action);
 //        setContentAreaFilled(false);
         setBorderPainted(false);
-        setBackground(Color.lightGray);
+        setBackground(Color.LIGHT_GRAY);
 //        setBorder(BorderFactory.createRaisedBevelBorder());
         setFont(new  java.awt.Font("华文正楷",  2,  13));
 

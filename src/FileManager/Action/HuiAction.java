@@ -79,10 +79,10 @@ public class HuiAction implements ActionListener {
         });
 
         menuFrame.add(b);
-        b.setBounds(880,0,99,50);
+        b.setBounds(920,0,90,50);
         setMouseColor(b);
 
-        bb = new FileManager.Config.Button("恢复文件", new ActionListener() {
+        bb = new FileManager.Config.Button("恢复", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -97,7 +97,7 @@ public class HuiAction implements ActionListener {
         menuFrame.add(bb);
         b.setFocusPainted(false);
         bb.setFocusPainted(false);
-        bb.setBounds(640,0,100,50);
+        bb.setBounds( 720,0,80,50);
     }
     private void rollback() throws IOException {
         show_info.addMouseListener(new MouseAdapter() {
