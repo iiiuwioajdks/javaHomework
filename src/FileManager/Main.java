@@ -73,6 +73,10 @@ public class Main{
                 b8.setBounds(0,520,100,50);
                 b8.setFocusPainted(false);
 
+                Button b9 = new Button("搜索",new SearchAction());
+                b9.setBounds(1000,55,100,40);
+
+
                 b7.setContentAreaFilled(false);
                 b7.setBorderPainted(false);
                 ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
@@ -92,28 +96,41 @@ public class Main{
 
 
                 menuFrame.add(b1);
-                b1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseEntered(MouseEvent e) {  //鼠标移上去
-                        b1.setBackground(Color.gray);
-                    }
-                });
-                b1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseExited(MouseEvent e) {  //鼠标离开
-                        b1.setBackground(Color.lightGray);
-                    }
-                });
+                setMouseColor(b1);
                 menuFrame.add(b2);
+                setMouseColor(b2);
                 menuFrame.add(b3);
+                setMouseColor(b3);
                 menuFrame.add(b4);
+                setMouseColor(b4);
                 menuFrame.add(b5);
+                setMouseColor(b5);
                 menuFrame.add(b6);
+                setMouseColor(b6);
                 menuFrame.add(b7);
+                setMouseColor(b7);
                 menuFrame.add(b8);
+                setMouseColor(b8);
+                menuFrame.add(b9);
+                setMouseColor(b9);
 
                 menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
+            }
+        });
+    }
+
+    public static void setMouseColor(JButton b) {
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                b.setBackground(Color.gray);
+            }
+        });
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {  //鼠标离开
+                b.setBackground(Color.lightGray);
             }
         });
     }
