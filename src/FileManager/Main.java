@@ -70,6 +70,10 @@ public class Main{
                 b8.setBounds(0,520,100,50);
                 b8.setFocusPainted(false);
 
+                Button b9 = new Button("搜索",new SearchAction());
+                b9.setBounds(1000,55,100,40);
+                menuFrame.add(b9);
+
                 b7.setContentAreaFilled(false);
                 b7.setBorderPainted(false);
                 ImageIcon icon = new ImageIcon(getClass().getResource("top.jpg"));
