@@ -38,6 +38,7 @@ public class Main{
                 HuiAction.getJFrame(menuFrame);
                 TxtAction.getJFrame(menuFrame);
                 VideoAction.getJFrame(menuFrame);
+                SearchAction.getJFrame(menuFrame);
                 //添加各种按钮
                 //创建文件夹（在这里可以用哈希表判断是否重复，重复提示删除）
                 //删除文件夹（包括单个和批量，这里指放入回收站，不是真正删除）
@@ -83,6 +84,8 @@ public class Main{
                 textField.setFont(new Font(null, Font.PLAIN, 20));
                 textField.setBounds(640,60,350,30);
                 menuFrame.add(textField);
+
+                SearchAction.getText(textField);
 
                 b1.doClick();
                 b6.doClick();
@@ -233,5 +236,7 @@ public class Main{
             System.out.println("当前系统不支持系统托盘");
         }
     }
+
+
 
 }
