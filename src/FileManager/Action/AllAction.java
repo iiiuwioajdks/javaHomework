@@ -74,6 +74,7 @@ public class AllAction implements ActionListener {
         show_info.updateUI();
         b1.setBounds(1000, 0, 99, 50);
 
+        setMouseColor(b1);
         b2 = new Button("复制", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,6 +112,7 @@ public class AllAction implements ActionListener {
             }
         });
 
+        setMouseColor(b2);
         menuFrame.add(b2);
         b2.setBounds(760, 0, 99, 50);
         show_info.updateUI();
@@ -163,4 +165,18 @@ public class AllAction implements ActionListener {
         menuFrame = jFrame;
     }
 
+    public static void setMouseColor(JButton b) {
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                b.setBackground(Color.gray);
+            }
+        });
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {  //鼠标离开
+                b.setBackground(Color.lightGray);
+            }
+        });
+    }
 }

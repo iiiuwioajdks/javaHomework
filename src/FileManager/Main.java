@@ -72,7 +72,6 @@ public class Main{
 
                 Button b9 = new Button("搜索",new SearchAction());
                 b9.setBounds(1000,55,100,40);
-                menuFrame.add(b9);
 
                 b7.setContentAreaFilled(false);
                 b7.setBorderPainted(false);
@@ -87,30 +86,28 @@ public class Main{
 
                 final JTextField textField = new JTextField(8);
                 textField.setFont(new Font(null, Font.PLAIN, 20));
-                menuFrame.add(textField);
 
 //                Button b8 = new Button("删除",new DeleteAction());
 //                b8.setBounds(1000,0,99,50);
                 menuFrame.add(b1);
-                b1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseEntered(MouseEvent e) {  //鼠标移上去
-                        b1.setBackground(Color.gray);
-                    }
-                });
-                b1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseExited(MouseEvent e) {  //鼠标离开
-                        b1.setBackground(Color.lightGray);
-                    }
-                });
+                setMouseColor(b1);
                 menuFrame.add(b2);
+                setMouseColor(b2);
                 menuFrame.add(b3);
+                setMouseColor(b3);
                 menuFrame.add(b4);
+                setMouseColor(b4);
                 menuFrame.add(b5);
+                setMouseColor(b5);
                 menuFrame.add(b6);
+                setMouseColor(b6);
                 menuFrame.add(b7);
+                setMouseColor(b7);
                 menuFrame.add(b8);
+                setMouseColor(b8);
+                menuFrame.add(b9);
+                setMouseColor(b9);
+                menuFrame.add(textField);
                 //显示布局
 //                String[] columnType = {"文件名"};
 //                String[] file_name = current.list();
@@ -138,5 +135,19 @@ public class Main{
         });
     }
 
+    public static void setMouseColor(JButton b) {
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                b.setBackground(Color.gray);
+            }
+        });
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {  //鼠标离开
+                b.setBackground(Color.lightGray);
+            }
+        });
+    }
 
 }
