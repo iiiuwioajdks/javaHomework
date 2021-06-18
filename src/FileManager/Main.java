@@ -81,6 +81,10 @@ public class Main{
                 b1.doClick();
                 b6.doClick();
 
+                final JTextField textField = new JTextField(8);
+                textField.setFont(new Font(null, Font.PLAIN, 20));
+                menuFrame.add(textField);
+
 //                Button b8 = new Button("删除",new DeleteAction());
 //                b8.setBounds(1000,0,99,50);
                 menuFrame.add(b1);
