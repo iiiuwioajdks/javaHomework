@@ -43,7 +43,6 @@ public class AllAction implements ActionListener {
         for (String s : list) {
             file_name.add(s);
         }
-        this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
         for (int i = 0; i < length; i++) {
@@ -59,7 +58,7 @@ public class AllAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100, 100, 1400, 800);
+        scroll.setBounds(100, 100, 1100, 800);
         menuFrame.add(scroll);
         b1 = new Button("删除", new ActionListener() {
             @Override
@@ -72,8 +71,10 @@ public class AllAction implements ActionListener {
         });
 
         menuFrame.add(b1);
+        show_info.updateUI();
         b1.setBounds(1000, 0, 99, 50);
 
+        setMouseColor(b1);
         b2 = new Button("复制", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,10 +108,14 @@ public class AllAction implements ActionListener {
                     } catch (Exception E) {
                     }
                 }
+
             }
         });
 
+        setMouseColor(b2);
         menuFrame.add(b2);
+        b1.setFocusPainted(false);
+        b2.setFocusPainted(false);
         b2.setBounds(760, 0, 99, 50);
         show_info.updateUI();
     }
@@ -162,4 +167,18 @@ public class AllAction implements ActionListener {
         menuFrame = jFrame;
     }
 
+    public static void setMouseColor(JButton b) {
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                b.setBackground(Color.gray);
+            }
+        });
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {  //鼠标离开
+                b.setBackground(Color.lightGray);
+            }
+        });
+    }
 }

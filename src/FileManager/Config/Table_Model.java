@@ -12,7 +12,7 @@ public class Table_Model extends AbstractTableModel {
 
     private Vector content = null;
 
-    private String[] title_name = {"文件名 "};
+    private String[] title_name = {"总文件 "};
 
     public Table_Model() {
         content = new Vector();
@@ -28,6 +28,9 @@ public class Table_Model extends AbstractTableModel {
         content.add(v);
     }
 
+    public void setTitle_name(String name){
+        this.title_name = new String[]{name};
+    }
     public void removeRow(int row) {
         content.remove(row);
     }

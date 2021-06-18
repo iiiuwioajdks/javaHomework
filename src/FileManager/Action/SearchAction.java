@@ -11,36 +11,32 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
- * @Author lmx
- * @Date 2021/6/17 13:15
- * @Version 1.0
- */
-public class TxtAction implements ActionListener {
+public class SearchAction implements ActionListener {
     private static JFrame menuFrame;
     private JTable show_info;
     private Table_Model model;
     private ArrayList<String> file_name;
-
+    private static JTextField textField;
 
     @Override
-    public void actionPerformed(ActionEvent e ) {
-
+    public void actionPerformed(ActionEvent e) {
         FileOperate fileOperate = new FileOperate();
-//显示布局
+
+        String text = textField.getText();
         File current = fileOperate.getCurrentFile();
         file_name = new ArrayList<>();
         String[] list = current.list();
         for (int i = 0; i < list.length; i++) {
-            String fileStyle = list[i].substring(list[i].lastIndexOf("."));
-            if(fileStyle.equals(".txt")){
+
+            if(findText(list[i], text) == 1){
                 file_name.add(list[i]);
             }
+
 
         }
         int length = this.file_name.size();
         model = new Table_Model(50);
-        model.setTitle_name("文档");
+        model.setTitle_name("搜索结果");
         for (int i = 0; i < length; i++) {
             model.addRow(this.file_name.get(i));
         }
@@ -56,9 +52,41 @@ public class TxtAction implements ActionListener {
         JScrollPane scroll = new JScrollPane(show_info);
         scroll.setBounds(100, 350, 1400, 800);
         menuFrame.add(scroll);
+
+
     }
 
     public static void getJFrame(JFrame jFrame){
         menuFrame = jFrame;
     }
+
+    public static void getText(JTextField jtextField){
+        textField = jtextField;
+    }
+
+    public int findText(String target, String text){
+        int if_find = 0;
+        int count=0;
+        for(int i = 0; i < target.length() - text.length(); i++){
+            count = i;
+            for(int j = 0; j < text.length(); j++){
+
+                if(target.charAt(count) == text.charAt(j)){
+                    count++;
+                    if_find++;
+                }
+                else{
+                    if_find = 0;
+                    break;
+                }
+            }
+            if(if_find == text.length())break;
+        }
+        if(if_find == text.length()) return 1;
+        else return 0;
+
+    }
+
+
+
 }

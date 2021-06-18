@@ -29,6 +29,8 @@ public class HuiAction implements ActionListener {
     private String name;
     private ArrayList<String> file_name;
     private JButton b;
+    private JButton bb;
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String[] columnType = {"文件名"};
@@ -47,6 +49,7 @@ public class HuiAction implements ActionListener {
         this.file_name = file_name;
         int length = this.file_name.size();
         model = new Table_Model(50);
+        model.setTitle_name("回收站");
         for(int i = 0; i < length; i++){
             model.addRow(this.file_name.get(i));
         }
@@ -61,7 +64,7 @@ public class HuiAction implements ActionListener {
         }
         show_info.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(show_info);
-        scroll.setBounds(100,100,1400,800);
+        scroll.setBounds(100,99,1400,800);
         menuFrame.add(scroll);
 
         b = new FileManager.Config.Button("彻底删除", new ActionListener() {
@@ -77,6 +80,64 @@ public class HuiAction implements ActionListener {
 
         menuFrame.add(b);
         b.setBounds(880,0,99,50);
+        setMouseColor(b);
+
+        bb = new FileManager.Config.Button("恢复文件", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    rollback();
+                }catch (Exception ee){
+                    System.out.println(ee.getMessage());
+                }
+            }
+
+        });
+        setMouseColor(bb);
+        menuFrame.add(bb);
+        b.setFocusPainted(false);
+        bb.setFocusPainted(false);
+        bb.setBounds(640,0,100,50);
+    }
+    private void rollback() throws IOException {
+        show_info.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(show_info.getValueAt(show_info.getSelectedRow(),0)!=null) {
+                    drow = show_info.getSelectedRow();
+                }
+            }
+        });
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream("src\\HuiShouFile\\" + file_name.get(drow));
+            os = new FileOutputStream("src\\My_File\\" + file_name.get(drow));
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } catch (Exception e) {
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+            if (os != null) {
+                os.close();
+            }
+        }
+        File file = null;
+        try {
+            file = new File("src\\HuiShouFile\\" + file_name.get(drow));
+        } catch (Exception e) {
+        }
+        file.delete();
+//        file_name.remove(drow);
+        System.out.println(file_name.get(drow));
+        this.model.removeRow(drow);
+        file_name.remove(drow);
+        show_info.updateUI();
     }
     private void removeData() throws IOException {
         show_info.addMouseListener(new MouseAdapter() {
@@ -104,6 +165,7 @@ public class HuiAction implements ActionListener {
 
     }
 
+
     public static void getJFrame(JFrame jFrame){
         menuFrame = jFrame;
     }
@@ -116,4 +178,20 @@ public class HuiAction implements ActionListener {
         this.name = name;
         System.out.println(name);
     }
+
+    public static void setMouseColor(JButton b) {
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {  //鼠标移上去
+                b.setBackground(Color.gray);
+            }
+        });
+        b.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {  //鼠标离开
+                b.setBackground(Color.lightGray);
+            }
+        });
+    }
+
 }
