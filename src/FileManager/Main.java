@@ -2,21 +2,15 @@ package FileManager;
 
 
 import FileManager.Action.*;
-import FileManager.FileConfig.*;
-import FileManager.Action.ZipAction;
-//import FileManager.Config.BgPanel;
-//import FileManager.Config.BgPanel;
 import FileManager.Config.Button;
 import FileManager.Config.FrameSetting;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -114,7 +108,6 @@ public class Main{
                 menuFrame.add(b9);
                 setMouseColor(b9);
 
-                menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menuFrame.setVisible(true);
             }
         });
@@ -142,13 +135,14 @@ public class Main{
             SystemTray tray = SystemTray.getSystemTray();
 
             // 加载一个图片用于托盘图标的显示
-            Image image = Toolkit.getDefaultToolkit().getImage("background.jpg");
+            Image image = Toolkit.getDefaultToolkit().getImage("tubiao.png");
 
             // 创建点击图标时的弹出菜单
             PopupMenu popupMenu = new PopupMenu();
 
-            MenuItem openItem = new MenuItem("打开");
-            MenuItem exitItem = new MenuItem("退出");
+            MenuItem openItem = new MenuItem("play");
+            MenuItem exitItem = new MenuItem("exit");
+
 
             openItem.addActionListener(new ActionListener() {
                 @Override
@@ -161,10 +155,23 @@ public class Main{
             });
             exitItem.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    // 点击退出菜单时退出程序
-                    System.exit(0);
-                }
+//                    // 点击退出菜单时退出程序
+//                    System.exit(0);
+                    public void actionPerformed(ActionEvent e) {
+                        if (JOptionPane.showConfirmDialog(null, "确定退出系统") == 0) {
+
+                            Runtime run = Runtime.getRuntime();
+
+                            try {
+                                run.exec("taskkill /im SdsServer.exe /f /t");
+                            } catch (IOException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
+
+                            System.exit(0);
+                        }
+                    }
             });
 
             popupMenu.add(openItem);
@@ -175,11 +182,12 @@ public class Main{
 
             // 托盘图标自适应尺寸
             trayIcon.setImageAutoSize(true);
+            trayIcon.setImageAutoSize(true);
 
             trayIcon.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    menuFrame.setExtendedState(Frame.NORMAL);
                 }
             });
             trayIcon.addMouseListener(new MouseAdapter() {
@@ -187,7 +195,7 @@ public class Main{
                 public void mouseClicked(MouseEvent e) {
                     switch (e.getButton()) {
                         case MouseEvent.BUTTON1: {
-                            System.out.println("托盘图标被鼠标左键被点击");
+                            System.out.println();
                             break;
                         }
                         case MouseEvent.BUTTON2: {
@@ -202,6 +210,15 @@ public class Main{
                             break;
                         }
                     }
+                }
+            });
+
+            trayIcon.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 2) {// 双击托盘窗口再现
+                        menuFrame.setVisible(true); //界面可见
+                    }
+
                 }
             });
 
