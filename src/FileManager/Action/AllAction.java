@@ -114,6 +114,8 @@ public class AllAction implements ActionListener {
 
         setMouseColor(b2);
         menuFrame.add(b2);
+        b1.setFocusPainted(false);
+        b2.setFocusPainted(false);
         b2.setBounds(760, 0, 99, 50);
         show_info.updateUI();
     }

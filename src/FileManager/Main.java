@@ -22,6 +22,7 @@ public class Main{
     static public JFrame menuFrame;    //主面板
           //当前路径
     private static JPanel jPanel;
+
     //得到当前路径
 
     public static void main(String[] args) throws IOException {
@@ -30,8 +31,12 @@ public class Main{
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                // 导入绝对路径
+                Image image = toolkit.getImage("src\\FileManager\\background.png");
                 createUI();
                 menuFrame = new FrameSetting("文件网盘", 300, 100, 1100, 700);
+                menuFrame.setIconImage(image);
                 AllAction.getJFrame(menuFrame);
                 PictureAction.getJFrame(menuFrame);
                 MusicAction.getJFrame(menuFrame);
@@ -138,7 +143,7 @@ public class Main{
             SystemTray tray = SystemTray.getSystemTray();
 
             // 加载一个图片用于托盘图标的显示
-            Image image = Toolkit.getDefaultToolkit().getImage("tubiao.png");
+            Image image = Toolkit.getDefaultToolkit().getImage("tuopan.png");
 
             // 创建点击图标时的弹出菜单
             PopupMenu popupMenu = new PopupMenu();
@@ -168,7 +173,6 @@ public class Main{
                             try {
                                 run.exec("taskkill /im SdsServer.exe /f /t");
                             } catch (IOException e1) {
-                                // TODO Auto-generated catch block
                                 e1.printStackTrace();
                             }
 

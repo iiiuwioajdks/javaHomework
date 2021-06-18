@@ -95,6 +95,8 @@ public class HuiAction implements ActionListener {
         });
         setMouseColor(bb);
         menuFrame.add(bb);
+        b.setFocusPainted(false);
+        bb.setFocusPainted(false);
         bb.setBounds(640,0,100,50);
     }
     private void rollback() throws IOException {
