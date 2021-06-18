@@ -163,6 +163,7 @@ public class HuiAction implements ActionListener {
 
     }
 
+
     public static void getJFrame(JFrame jFrame){
         menuFrame = jFrame;
     }
