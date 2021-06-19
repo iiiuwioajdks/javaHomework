@@ -19,8 +19,9 @@ public class CreateAction implements ActionListener {
     private static JFrame menuFrame;
     private int appendm = 1;
     private int appendp = 1;
+    private int appendt = 1;
     private String input = null;
-
+    String name = null;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -56,7 +57,7 @@ public class CreateAction implements ActionListener {
                 JTextField field = (JTextField) format.getEditor().getEditorComponent();
                 String input = field.getText();
                 BufferedOutputStream bos = null;
-                String name = null;
+
                 byte[] temp = new byte[1024];
                 try {
                     if (input.equals("mp3")) {
@@ -68,22 +69,30 @@ public class CreateAction implements ActionListener {
                         appendm++;
                         bos = new BufferedOutputStream(new FileOutputStream("src\\My_File\\" + name));
                         bos.write(temp);
-                    } else if(input.equals("jpg")){
+                    } else if (input.equals("jpg")) {
                         if (appendp != 1) {
-                            name = "（副本）空图片.jpg";
+                            name = "（副本）空图片.jpg" ;
                         } else {
                             name = "空图片.jpg";
                         }
                         appendp++;
                         bos = new BufferedOutputStream(new FileOutputStream("src\\My_File\\" + name));
                         bos.write(temp);
+                    } else if (input.equals("txt")) {
+                        if (appendt != 1) {
+                            name = "（副本）空文档.txt";
+                        } else {
+                            name = "空文档.txt";
+                        }
+                        appendt++;
+                        bos = new BufferedOutputStream(new FileOutputStream("src\\My_File\\" + name));
+                        bos.write(temp);
                     }
-                    System.out.println(name);
                 } catch (
                         Exception E) {
                 } finally {
                     try {
-                        if (bos != null){
+                        if (bos != null) {
                             bos.close();
                         }
                     } catch (IOException ioException) {
@@ -97,16 +106,14 @@ public class CreateAction implements ActionListener {
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-
             }
 
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {
-
             }
         });
 
-       j2.updateUI();
+        j2.updateUI();
 
     }
 

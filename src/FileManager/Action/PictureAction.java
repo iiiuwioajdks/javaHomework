@@ -23,20 +23,26 @@ public class PictureAction implements ActionListener {
     private ArrayList<String> file_name;
 
     @Override
-    public void actionPerformed(ActionEvent e ) {
+    public void actionPerformed(ActionEvent e) {
 
         FileOperate fileOperate = new FileOperate();
 //显示布局
         File current = fileOperate.getCurrentFile();
         file_name = new ArrayList<>();
         String[] list = current.list();
-        for (int i = 0; i < list.length; i++) {
-            String fileStyle = list[i].substring(list[i].lastIndexOf("."));
-            if(fileStyle.equals(".jpg")){
-                file_name.add(list[i]);
-            }
 
+        try {
+            for (int i = 0; i < list.length; i++) {
+                String fileStyle = null;
+                fileStyle = list[i].substring(list[i].lastIndexOf("."));
+                if (fileStyle.equals(".jpg")) {
+                    file_name.add(list[i]);
+                }
+            }
+        } catch (Exception eee) {
+            System.out.println(eee);
         }
+
         int length = this.file_name.size();
         model = new Table_Model(50);
         model.setTitle_name("图片");
@@ -58,7 +64,7 @@ public class PictureAction implements ActionListener {
 
     }
 
-    public static void getJFrame(JFrame jFrame){
+    public static void getJFrame(JFrame jFrame) {
         menuFrame = jFrame;
     }
 }
