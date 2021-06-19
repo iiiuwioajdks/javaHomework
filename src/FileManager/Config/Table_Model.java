@@ -57,7 +57,13 @@ public class Table_Model extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         if (row >= 0 && content != null) {
-            return ((Vector) content.get(row)).get(col);
+            Object o = null;
+            try {
+                o = ((Vector) content.get(row)).get(col);
+            }catch (Exception e){
+
+            }
+            return o;
         }else {
             return "垃圾文件";
         }

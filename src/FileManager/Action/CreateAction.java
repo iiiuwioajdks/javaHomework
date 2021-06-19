@@ -39,7 +39,7 @@ public class CreateAction implements ActionListener {
         j2.add(j1);
         j2.add(format);
 
-        j2.setBounds(650, 0, 70, 100);
+        j2.setBounds(640, 0, 80, 100);
 
         menuFrame.add(j2);
         menuFrame.setVisible(true);

@@ -6,6 +6,7 @@ import FileManager.FileConfig.FileOperate;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,9 +35,9 @@ public class AllAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
         FileOperate fileOperate = new FileOperate();
         //显示布局
-        String[] columnType = {"文件名"};
         File current = fileOperate.getCurrentFile();
         file_name = new ArrayList<>();
         String[] list = current.list();
@@ -91,7 +92,12 @@ public class AllAction implements ActionListener {
                 int len = 0;
                 BufferedOutputStream bos = null;
                 BufferedInputStream bis = null;
-                String name = file_name.get(drow);
+                String name = null;
+                try {
+                    name = file_name.get(drow);
+                }catch (Exception e1){
+                    e1.getMessage();
+                }
                 System.out.println(name);
                 byte[] temp = new byte[1024];
 
@@ -114,7 +120,6 @@ public class AllAction implements ActionListener {
                 show_info.updateUI();
             }
         });
-
         setMouseColor(b2);
         menuFrame.add(b2);
         b1.setFocusPainted(false);

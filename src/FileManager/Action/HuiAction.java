@@ -12,7 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @Author lmx
@@ -103,7 +102,7 @@ public class HuiAction implements ActionListener {
         show_info.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(show_info.getValueAt(show_info.getSelectedRow(),0)!=null) {
+                if (show_info.getValueAt(show_info.getSelectedRow(), 0) != null) {
                     drow = show_info.getSelectedRow();
                 }
             }
