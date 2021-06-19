@@ -73,8 +73,8 @@ public class AllAction implements ActionListener {
         menuFrame.add(b1);
         show_info.updateUI();
         b1.setBounds(1020, 0, 80, 50);
-
         setMouseColor(b1);
+
         b2 = new Button("复制", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +86,8 @@ public class AllAction implements ActionListener {
                         }
                     }
                 });
+
+                System.out.println(drow);
                 int len = 0;
                 BufferedOutputStream bos = null;
                 BufferedInputStream bis = null;
@@ -108,7 +110,8 @@ public class AllAction implements ActionListener {
                     } catch (Exception E) {
                     }
                 }
-
+                model.addRow(name);
+                show_info.updateUI();
             }
         });
 
@@ -117,7 +120,7 @@ public class AllAction implements ActionListener {
         b1.setFocusPainted(false);
         b2.setFocusPainted(false);
         b2.setBounds(820, 0, 80, 50);
-        show_info.updateUI();
+
     }
 
     private void removeData() throws IOException {
@@ -129,7 +132,8 @@ public class AllAction implements ActionListener {
                 }
             }
         });
-        ;
+
+
 
         InputStream is = null;
         OutputStream os = null;

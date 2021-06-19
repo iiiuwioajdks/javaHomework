@@ -30,11 +30,22 @@ public class PictureAction implements ActionListener {
         File current = fileOperate.getCurrentFile();
         file_name = new ArrayList<>();
         String[] list = current.list();
+        String fileStyle = null;
         for (int i = 0; i < list.length; i++) {
-            String fileStyle = list[i].substring(list[i].lastIndexOf("."));
-            if(fileStyle.equals(".jpg")){
-                file_name.add(list[i]);
+            try{
+                fileStyle = list[i].substring(list[i].lastIndexOf("."));
+                if(fileStyle.equals(".jpg")){
+                    file_name.add(list[i]);
+                }
+            }catch (Exception eeee){
+                System.out.println(eeee);
             }
+            if(fileStyle != null){
+                if (fileStyle.equals(".jpg")) {
+                    file_name.add(list[i]);
+                }
+            }
+
 
         }
         int length = this.file_name.size();

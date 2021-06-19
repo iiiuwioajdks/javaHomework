@@ -30,13 +30,20 @@ public class VideoAction implements ActionListener {
         File current = fileOperate.getCurrentFile();
         file_name = new ArrayList<>();
         String[] list = current.list();
-        for (int i = 0; i < list.length; i++) {
-            String fileStyle = list[i].substring(list[i].lastIndexOf("."));
-            if(fileStyle.equals(".mp4")){
-                file_name.add(list[i]);
-            }
 
+        for (int i = 0; i < list.length; i++) {
+            String fileStyle = null;
+            try{
+                fileStyle = list[i].substring(list[i].lastIndexOf("."));
+                if(fileStyle.equals(".mp4")){
+                    file_name.add(list[i]);
+                }
+            }catch (Exception eeee){
+                System.out.println(eeee);
+            }
         }
+
+
         int length = this.file_name.size();
         model = new Table_Model(50);
         model.setTitle_name("视频");

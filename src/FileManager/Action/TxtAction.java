@@ -32,9 +32,16 @@ public class TxtAction implements ActionListener {
         file_name = new ArrayList<>();
         String[] list = current.list();
         for (int i = 0; i < list.length; i++) {
-            String fileStyle = list[i].substring(list[i].lastIndexOf("."));
-            if(fileStyle.equals(".txt")){
-                file_name.add(list[i]);
+            String fileStyle = null;
+            try {
+                fileStyle = list[i].substring(list[i].lastIndexOf("."));
+            }catch (Exception eee){
+                System.out.println(eee.getMessage());
+            }
+            if (fileStyle != null) {
+                if (fileStyle.equals(".txt")) {
+                    file_name.add(list[i]);
+                }
             }
 
         }

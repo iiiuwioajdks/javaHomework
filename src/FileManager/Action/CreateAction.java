@@ -3,6 +3,7 @@ package FileManager.Action;
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
@@ -26,16 +27,19 @@ public class CreateAction implements ActionListener {
 
         JPanel j2 = new JPanel();       //中间容器
 
-        JLabel j1 = new JLabel("file format:");
-
+        j2.setBackground(Color.white);
+        JLabel j1 = new JLabel("");
+        j1.setText("suffix");
+//        j1.setBackground(Color.BLACK);
         JComboBox<String> format = new JComboBox<String>();
         format.addItem("mp3");
         format.addItem("jpg");
+        format.addItem("txt");
 
         j2.add(j1);
         j2.add(format);
 
-        j2.setBounds(500, 0, 150, 50);
+        j2.setBounds(650, 0, 70, 100);
 
         menuFrame.add(j2);
         menuFrame.setVisible(true);
@@ -102,6 +106,7 @@ public class CreateAction implements ActionListener {
             }
         });
 
+       j2.updateUI();
 
     }
 
